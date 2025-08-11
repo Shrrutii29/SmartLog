@@ -34,13 +34,13 @@ export default function SignIn() {
         // Login success
         navigate("/dashboard");
       } else {
-        // Attempt to parse error message
+        // parse error message
         let errorMessage = "Login failed";
         try {
           const errorData = await response.json();
           errorMessage = errorData.message || errorMessage;
-        } catch {
-          // If parsing fails, keep generic message
+        } catch (err) {
+          setError("Network error. Please try again.");
         }
         setError(errorMessage);
       }
